@@ -17,19 +17,27 @@ fetch(full_url)
     // console.log(data.table.rows[0].c[5].v); - Pega a validação na tabela
 
     function getAllUsers(){
-        for(let i = data.table.rows.length - 1; i >= 0; i--){
+        for(let i = 0; i <= data.table.rows.length; i++){
+            let containerPerson = document.getElementById("container-person");
+
             let person = document.createElement("div");
             person.id = "person";
         
             let personName = document.createElement("h4");
             personName.id = "person-name";
 
-            let containerPerson = document.getElementById("container-person");
+            let personEmail = document.createElement("h5");
+            personEmail.id = "person-email";
 
-            personName.innerHTML = data.table.rows[0].c[0].v;
+
+            personName.innerHTML = data.table.rows[i].c[0].v;
+            personEmail.innerHTML = data.table.rows[i].c[2].v;
+
 
             containerPerson.appendChild(person);
+
             person.appendChild(personName);
+            person.appendChild(personEmail);
         }
     }
     getAllUsers();
