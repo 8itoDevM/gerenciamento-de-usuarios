@@ -17,7 +17,7 @@ fetch(full_url)
     // console.log(data.table.rows[0].c[5].v); - Pega a validação na tabela
 
     function getAllUsers(){
-        for(let i = 0; i <= data.table.rows.length; i++){
+        for(let i = data.table.rows.length - 1; i >= 0; i--){
             let containerPerson = document.getElementById("container-person");
 
             let person = document.createElement("div");
@@ -29,16 +29,26 @@ fetch(full_url)
             let personEmail = document.createElement("h5");
             personEmail.id = "person-email";
 
+            let btnDeleteUser = document.createElement("button");
+            btnDeleteUser.className = "btn-delete";
+
+            btnDeleteUser.innerHTML = "Deletar";
 
             personName.innerHTML = data.table.rows[i].c[0].v;
             personEmail.innerHTML = data.table.rows[i].c[2].v;
 
+            btnDeleteUser.addEventListener("click", function deleteUser(){
+                console.log("Clicou para deletear " + data.table.rows[i].c[0].v);
+                
+            });
 
             containerPerson.appendChild(person);
 
             person.appendChild(personName);
             person.appendChild(personEmail);
+            person.appendChild(btnDeleteUser);
         }
     }
+
     getAllUsers();
 })
