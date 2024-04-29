@@ -37,6 +37,12 @@ fetch(full_url)
             personName.innerHTML = data.table.rows[i].c[0].v;
             personEmail.innerHTML = data.table.rows[i].c[2].v;
 
+            btnDeleteUser.name = data.table.rows[i].c[0].v;
+
+            let formDeleteBtn = document.createElement("form");
+            formDeleteBtn.action = "https://script.google.com/macros/s/AKfycbymWeA_BAn9L6gHbVd2-I-f3gRgURI5acpW22xO9oPrIFwLHmzUFtC4mpKpoOwc17aKhw/exec";
+            formDeleteBtn.method = "post";
+
             btnDeleteUser.addEventListener("click", function deleteUser(){
                 console.log("Clicou para deletear " + data.table.rows[i].c[0].v);
                 
@@ -46,9 +52,12 @@ fetch(full_url)
 
             person.appendChild(personName);
             person.appendChild(personEmail);
-            person.appendChild(btnDeleteUser);
+            //person.appendChild(btnDeleteUser);
+            person.appendChild(formDeleteBtn);
+            formDeleteBtn.appendChild(btnDeleteUser);
         }
     }
+
 
     getAllUsers();
 })
